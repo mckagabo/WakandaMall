@@ -1,0 +1,109 @@
+<html>
+<head>
+  <title><%=title%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-sacale=1" >
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/bower_components/dist/css/bootstrap-theme.min.css">
+ <script src="/bower_components/jquery/jquery.slim.min.js" ></script>
+ <script src="/bower_components/bootstrap/js/bootstrap.min.js"></script>
+ <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!------------------------------------------------------------------------------------>
+
+<!------------------------------------------------------------------------------------->
+<script>
+//this is for enabeling the dropdown list of categories to appear once clicked
+$(function(){
+    $(".input-group-btn .dropdown-menu li a").click(function(){
+
+        var selText = $(this).html();
+
+        //working version - for single button //
+       //$('.btn:first-child').html(selText+'<span class="caret"></span>');
+
+       //working version - for multiple buttons //
+       $(this).parents('.input-group-btn').find('.btn-search').html(selText);
+
+   });
+
+});
+</script>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation" style="background-color:white">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  <a href="/"> <img src="/images/images.png" height="75" width="75"/></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+  <ul class="nav navbar-nav">
+     <li><a href="#" style="color:white">--------------</a></li>
+   <li><a href="#" style="color:white">--------------</a></li>
+    <li><a href="#"><form action='/signUp'><button type="submit" style="color:blue;">Register your shop too!</button></form></a></li>
+  </ul>
+
+    <div class="col-sm-3 col-md-3">
+
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <!--Begining of the search form-->
+         <form class="navbar-form navbar-search" role="search" action="searchResults">
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="input"  class="btn btn-search btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="label-icon">All categories</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-left" role="menu">
+                      <li><a href="#All/"><input value='All' hidden='false'/><span>All categories</span></a></li>
+                      <%if(category){%>
+                        <%category.forEach(function(categ){%>
+                        <li>
+                            <a href="#<%=categ.categoryName%>/">
+                               <span><%=categ.categoryName%></span>
+                          </a>
+                        </li>
+                        <%})%>
+                      <%}%>
+
+                    </ul>
+                </div>
+                 <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" class="form-control" name='keyword'>
+
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-search btn-success">
+                    Search
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!--End of the search form-->
+      </li>
+
+       <li><a href="/client">Sign up</a></li>
+       <li class="dropdown"><a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in</a>
+         <ul class="dropdown-menu">
+           <li><a href="/client">As a customer</a></li>
+
+              <li><a href="/verify/login">As a Shop manager</a></li>
+
+         </ul>
+       </li>
+
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+<!--Begining of another search button-->

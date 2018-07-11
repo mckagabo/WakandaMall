@@ -1,0 +1,77 @@
+<%- include layouts/header.ejs %>
+
+<div class="container">
+  <% if (messages.error) { %>
+     <p style="color:red;text-align:center"><%- messages.error %></p>
+    <%}%>
+    <% if(messages.success) {  %>
+      <p style="color:green;text-align:center"><%- messages.success %></p>
+      <%}%>
+      <% if(messages.info){%>
+      <p style="color:blue;text-align:center"><%- messages.info %></p>
+      <%}%>
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Register your business! <small> <b style='color:green'>It's free!</b></small></h3>
+			 			</div>
+			 			<div class="panel-body" >
+			    		<form role="form" action="/signUpResults/register" method="post" enctype="multipart/form-data">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name" required>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name" required>
+			    					</div>
+			    				</div>
+			    			</div>
+                <div class='form-group'>
+                    <input type="phone" name="phone" id="phone" class="form-control input-sm" placeholder="telephone" required>
+                </div>
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address" required>
+			    			</div>
+                <div class="form-group">
+                <textarea class="form-control" id="textarea" name="description" placeholder="Business description" required></textarea>
+               </div>
+               <div class="form-group">
+                 <input type="text" name='businessName' class="form-control input-sm" placeholder="Business Name"/><br>
+                 <select id="businessType" name="businessType" class="form-control">
+                   <option value="">-----Select business Type----</option>
+                    <%if(category){%>
+                      <%category.forEach(function(categories){%>
+                        <option value="<%=categories.categID%>"><%=categories.categoryName%></option>
+                      <%})%>
+                    <%}%>
+                 </select>
+              </div>
+               <div class='form-group'>
+                <span>Upload your Busines logo</span><input id="theLogo" name="theLogo" class="input-file" type="file" required>
+               </div>
+              </div>
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<input type="submit" value="Sign Up!" class="btn btn-info btn-block">
+
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>

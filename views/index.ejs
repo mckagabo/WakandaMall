@@ -1,0 +1,34 @@
+<%- include layouts/header.ejs %>
+
+<div class="container" >
+
+      <!--Begining of the shop display -->
+       <%if(shops){%>
+            <%shops.forEach(function(shop){%>
+              <div class='col-sm-3'>
+                 <div class='product-image-wrapper'>
+       <a href="/shops/<%-shop.shopName%>/<%-shop.shopID%>">
+      <div class="w3-card2" style="width:260px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;margin-top:10%;">
+        <img class="card-img-top" src="images/businessLogo/<%-shop.shopLogo %>" alt="Card image" style="width:100%;">
+        <div class="card text-white bg-info mb-3" >
+          <h4 class="card-title" style="text-align:center;"><b><%-shop.shopName %></b></h4>
+          <p class="card-text" style="color:black"><%-shop.description %></p>
+        </div>
+      </div>
+      <br>
+    </a>
+  </div>
+  </div>
+   <%})%>
+  <%}%>
+
+
+    <!--End of the shop display -->
+
+
+
+    </div>
+
+</body>
+
+</html>

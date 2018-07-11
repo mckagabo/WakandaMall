@@ -1,0 +1,147 @@
+<%- include layouts/Header.ejs %>
+
+<%- include layouts/sideBar.ejs %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add variation to   <%-name%></h1>
+                    <% if (messages.error) { %>
+                       <p style="color:red;text-align:center"><%- messages.error %></p>
+                      <%}%>
+                      <% if(messages.success) {  %>
+                        <p style="color:green;text-align:center"><%- messages.success %></p>
+                        <%}%>
+                        <% if(messages.info){%>
+                        <p style="color:blue;text-align:center"><%- messages.info %></p>
+                        <%}%>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <%-name%> variations
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row" >
+                                <div class="col-lg-6">
+
+                                  <form role="form"  method="post" action="/addVariation/<%-product%>/<%-name%>/color" >
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                          <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                               <input class="form-control" placeholder="Color" name="amabara" />
+                                            </div>
+                                          </div>
+                                        <button type="submit" class="btn btn-info btn-md">Add variations</button>
+                                        </div>
+                                    </div>
+                                  </form>
+                                    <form role="form"  method="post" action="/addVariation/<%-product%>/<%-name%>/size" >
+                                        <div class="form-group">
+                                            <label>Enter Size and Color</label>
+                                            <div class="row">
+                                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                            			                 <input class="form-control" placeholder="Size" name="size" value="">
+                            			    					</div>
+                                              </div>
+                            			    			<button type="submit" class="btn btn-info btn-md">Add variations</button>
+                            			    			</div>
+                                        </div>
+                                    </form>
+
+
+
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+
+                                  <div class="panel-body">
+                       <div class="table-responsive">
+                           <table class="table">
+                               <thead>
+                                   <tr>
+                                       <th>color & size</th>
+                                       <th>Action</th>
+
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                 <%if(colors){%>
+                                   <%colors.forEach(function(color){%>
+                                     <tr>
+                                       <td><%-color.color%></td>
+                                        <td>
+                                        <form method="post" action="/removeVariant/<%-color.colorID%>/<%-product%>/<%-name%>/color">
+                                          <button type="submit" class="btn btn-default btn-sm">
+                                             <span class="glyphicon glyphicon-trash"></span> remove
+                                         </button>
+                                        </form>
+                                        </td>
+                                     </tr>
+                                   <%})%>
+                                 <%}%>
+
+
+                                   <%if(sizes){%>
+                                     <%sizes.forEach(function(size){%>
+                                       <tr>
+                                         <td><%-size.size%></td>
+                                          <td>
+                                          <form method="post" action="/removeVariant/<%-size.sizeID%>/<%-product%>/<%-name%>/size">
+                                            <button type="submit" class="btn btn-default btn-sm">
+                                               <span class="glyphicon glyphicon-trash"></span> remove
+                                           </button>
+                                          </form>
+                                          </td>
+                                       </tr>
+                                     <%})%>
+                                   <%}%>
+
+
+
+                               </tbody>
+                           </table>
+
+                       </div>
+
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
